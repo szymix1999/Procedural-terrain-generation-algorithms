@@ -1,0 +1,112 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Prezentacja/Spatial.gd" type="Script" id=2]
+[ext_resource path="res://Materials/white.material" type="Material" id=3]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+seed = 4
+octaves = 9
+period = 5.2
+persistence = 0.0
+lacunarity = 0.1
+
+[sub_resource type="NoiseTexture" id=2]
+seamless = true
+noise = SubResource( 1 )
+
+[sub_resource type="OpenSimplexNoise" id=3]
+period = 153.2
+
+[sub_resource type="NoiseTexture" id=4]
+noise = SubResource( 3 )
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 1, 0.960784, 0, 1 )
+metallic = 1.0
+metallic_specular = 1.0
+metallic_texture = SubResource( 4 )
+roughness = 0.0
+emission_enabled = true
+emission = Color( 1, 0.0117647, 0.0117647, 1 )
+emission_energy = 0.54
+emission_operator = 1
+emission_on_uv2 = false
+emission_texture = SubResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=6]
+flags_transparent = true
+params_line_width = 0.1
+params_point_size = 0.1
+albedo_color = Color( 0.0823529, 0.117647, 0.952941, 0.388235 )
+
+[sub_resource type="CubeMesh" id=7]
+material = SubResource( 6 )
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="SphereMesh" id=8]
+radius = 0.063
+height = 0.125
+
+[sub_resource type="SpatialMaterial" id=9]
+metallic = 1.0
+roughness = 0.0
+
+[node name="Voxel" type="Spatial"]
+transform = Transform( 0.961125, 0.00128953, -0.00288663, -0.00127145, 0.961111, 0.00601524, 0.00289464, -0.00601139, 0.961107, 0.0466228, -0.0398739, 0.00154883 )
+script = ExtResource( 2 )
+indx = 222
+material = SubResource( 5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, -2.00089e-11, -2.32831e-10, 2.36469e-10, 1, 9.31323e-10, 0, 4.65661e-10, 1, -0.5, -0.5, -0.5 )
+
+[node name="Cube" type="MeshInstance" parent="."]
+transform = Transform( 1, -1.02591e-09, -1.32713e-08, 4.69299e-10, 1, 1.86265e-09, 0, -2.468e-08, 1, 0, 0, 0 )
+mesh = SubResource( 7 )
+material/0 = null
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 1.03682e-10, -1.39698e-09, 9.34961e-10, 1, 3.25963e-09, 0, 1.39698e-09, 1, -2.25288, 1.73899, 0.0176619 )
+
+[node name="Vertices" type="Spatial" parent="."]
+
+[node name="Vert1" type="MeshInstance" parent="Vertices"]
+transform = Transform( 1, 6.00267e-10, -4.19095e-09, 4.07817e-09, 0.999999, 1.53668e-08, 0, 8.3819e-09, 0.999999, -0.5, -0.5, 0.5 )
+mesh = SubResource( 8 )
+material/0 = ExtResource( 3 )
+
+[node name="Vert2" type="MeshInstance" parent="Vertices"]
+transform = Transform( 1, 5.9481e-10, -4.19095e-09, 3.14685e-09, 0.999999, 1.25729e-08, 0, 6.51926e-09, 0.999999, 0.5, -0.5, 0.5 )
+mesh = SubResource( 8 )
+material/0 = ExtResource( 3 )
+
+[node name="Vert3" type="MeshInstance" parent="Vertices"]
+transform = Transform( 1, 5.9481e-10, -4.19095e-09, 3.37968e-09, 0.999999, 1.30385e-08, 0, 6.98492e-09, 0.999999, 0.5, -0.5, -0.5 )
+mesh = SubResource( 8 )
+material/0 = SubResource( 9 )
+
+[node name="Vert4" type="MeshInstance" parent="Vertices"]
+transform = Transform( 1, 5.9481e-10, -4.19095e-09, 3.37968e-09, 0.999999, 1.30385e-08, 0, 6.98492e-09, 0.999999, -0.5, -0.5, -0.5 )
+mesh = SubResource( 8 )
+material/0 = SubResource( 9 )
+
+[node name="Vert5" type="MeshInstance" parent="Vertices"]
+transform = Transform( 1, 5.9481e-10, -4.19095e-09, 3.37968e-09, 0.999999, 1.30385e-08, 0, 6.98492e-09, 0.999999, -0.5, 0.5, 0.5 )
+mesh = SubResource( 8 )
+material/0 = SubResource( 9 )
+
+[node name="Vert6" type="MeshInstance" parent="Vertices"]
+transform = Transform( 1, 5.9481e-10, -4.19095e-09, 3.37968e-09, 0.999999, 1.30385e-08, 0, 6.98492e-09, 0.999999, 0.5, 0.5, 0.5 )
+mesh = SubResource( 8 )
+material/0 = SubResource( 9 )
+
+[node name="Vert7" type="MeshInstance" parent="Vertices"]
+transform = Transform( 1, 5.9481e-10, -4.19095e-09, 3.14685e-09, 0.999999, 1.25729e-08, 0, 6.51926e-09, 0.999999, 0.5, 0.5, -0.5 )
+mesh = SubResource( 8 )
+material/0 = SubResource( 9 )
+
+[node name="Vert8" type="MeshInstance" parent="Vertices"]
+transform = Transform( 1, 5.9481e-10, -4.19095e-09, 3.37968e-09, 0.999999, 1.30385e-08, 0, 6.98492e-09, 0.999999, -0.5, 0.5, -0.5 )
+mesh = SubResource( 8 )
+material/0 = SubResource( 9 )
